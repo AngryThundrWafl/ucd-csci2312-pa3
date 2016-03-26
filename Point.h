@@ -18,12 +18,12 @@ namespace Clustering {
         static unsigned int __idGen; // id generator
 
     public:
-        static const char POINT_VALUE_DELIM;
+        static const char POINT_VALUE_DELIM;                            //this was added not from the other project
 
-        static void rewindIdGen();
+        static void rewindIdGen();                                      //this was added
 
-        Point(unsigned int);
-        Point(unsigned int, double *);
+        Point(unsigned int);                                            //default constructor now takes a unsigned int
+        Point(unsigned int, double *);                                  //constructor takes a unsigned int and a double
 
         // Big three: cpy ctor, overloaded operator=, dtor
         Point(const Point &);
@@ -32,10 +32,9 @@ namespace Clustering {
 
         // Accessors & mutators
         int getId() const;
-        unsigned int getDims() const;
-        void setValue(unsigned int, double);
-        double getValue(unsigned int) const;
-
+        unsigned int getDims() const;                                   //get dims now gets a unsigned int
+        void setValue(unsigned int, double);                            //set value takes a unsigned int now
+        double getValue(unsigned int) const;                            //get values takes a unsigned int
         // Functions
         double distanceTo(const Point &) const;
 
@@ -47,8 +46,8 @@ namespace Clustering {
         const Point operator*(double) const; // prevent (p1 * 2) = p2;
         const Point operator/(double) const; // p3 = p2 / 2;
 
-        double &operator[](unsigned int index);
-        const double &operator[](unsigned int index) const;
+        double &operator[](unsigned int index);                         //operator overload now takes a unsigned int
+        const double &operator[](unsigned int index) const;             //const of same overaload operator takes a unsigned int as well
 
         // Friends
         friend Point &operator+=(Point &, const Point &);

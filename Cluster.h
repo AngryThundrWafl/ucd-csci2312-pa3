@@ -21,13 +21,13 @@ namespace Clustering {
     };
 
     class Cluster {
-        unsigned int __dimensionality;
+        unsigned int __dimensionality;              //dimensionality was added
         unsigned int __size;
         LNodePtr __points;
 
-        unsigned int __id;
+        unsigned int __id;                          //unsigned int id was added as a member
 
-        static unsigned int __idGenerator;
+        static unsigned int __idGenerator;          //_id generator was also added
 
         void __del();
         void __cpy(LNodePtr pts);
@@ -48,8 +48,8 @@ namespace Clustering {
             Centroid &operator[](const Centroid &cent) = delete;
 
             // getters/setters
-            const Point get() const; // doesn't check for validity
-            void set(const Point &p); // sets to valid
+            const Point get() const;    // doesn't check for validity
+            void set(const Point &p);   // sets to valid
             bool isValid() const;
             void setValid(bool valid);
 
@@ -64,7 +64,7 @@ namespace Clustering {
 
         Centroid centroid; // the cluster's centroid
 
-        Cluster(unsigned int d);
+        Cluster(unsigned int d);                            //now has a constructor that takes in a unisgined int
 
         // The big three: cpy ctor, overloaded operator=, dtor
         Cluster(const Cluster &);
@@ -72,9 +72,9 @@ namespace Clustering {
         ~Cluster();
 
         // Getters
-        unsigned int getSize() const;
-        unsigned int getDimensionality() const;
-        unsigned int getId() const;
+        unsigned int getSize() const;                       //get size now returns a unsigned int
+        unsigned int getDimensionality() const;             //returns the dimenstionality variable
+        unsigned int getId() const;                         //returns the Id variable
 
         // Add/remove: They allow calling c1.add(c2.remove(p));
         void add(const Point &);
