@@ -7,7 +7,7 @@ namespace  Clustering{
 
 
     KMeans::KMeans(unsigned int dim, unsigned int k, std::string filename, unsigned int maxIter) {
-
+ dim
     }
 }
 
