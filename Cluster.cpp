@@ -245,13 +245,13 @@ namespace Clustering {
     }
     // Friends: Arithmetic (Cluster and Point)
     const Cluster operator+(const Cluster &Cluster1, const Point &P1){
-        Cluster *C2 = new Cluster(Cluster1);
-        if(!(C2->contains(P1))){
-            C2->add(P1);
+        Cluster *Cluster2 = new Cluster(Cluster1);
+        if(!(Cluster2->contains(P1))){
+            Cluster2->add(P1);
         }else{
             return Cluster1;
         }
-        return *C2;
+        return *Cluster2;
     }
     const Cluster operator-(const Cluster &Cluster1, const Point &P1){
         Cluster *C2 = new Cluster(Cluster1);

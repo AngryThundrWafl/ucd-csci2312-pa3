@@ -15,10 +15,6 @@
     <list default="true" id="43233301-b254-426c-833f-9d3c405e83d9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster.cpp" afterPath="$PROJECT_DIR$/Cluster.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exceptions.cpp" afterPath="$PROJECT_DIR$/Exceptions.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exceptions.h" afterPath="$PROJECT_DIR$/Exceptions.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KMeans.cpp" afterPath="$PROJECT_DIR$/KMeans.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Point.cpp" afterPath="$PROJECT_DIR$/Point.cpp" />
     </list>
     <ignored path="ucd-csci2312-pa3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,17 +81,17 @@
         <entry file="file://$PROJECT_DIR$/Point.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="88" selection-start-line="22" selection-start-column="88" selection-end-line="22" selection-end-column="88" />
+              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cluster.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Cluster.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cluster.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="348" column="71" selection-start-line="348" selection-start-column="71" selection-end-line="348" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.16666667">
+              <caret line="250" column="14" selection-start-line="250" selection-start-column="14" selection-end-line="250" selection-end-column="14" />
               <folding>
                 <element signature="e#41#61#0" expanded="true" />
               </folding>
@@ -125,10 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KMeans.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KMeans.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/KMeans.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14814815">
+            <state vertical-scroll-proportion="0.0">
               <caret line="8" column="98" selection-start-line="8" selection-start-column="98" selection-end-line="8" selection-end-column="98" />
               <folding />
             </state>
@@ -158,10 +154,10 @@
         <option value="$PROJECT_DIR$/Point.h" />
         <option value="$PROJECT_DIR$/Cluster.h" />
         <option value="$PROJECT_DIR$/Point.cpp" />
-        <option value="$PROJECT_DIR$/Cluster.cpp" />
         <option value="$PROJECT_DIR$/Exceptions.h" />
         <option value="$PROJECT_DIR$/Exceptions.cpp" />
         <option value="$PROJECT_DIR$/KMeans.cpp" />
+        <option value="$PROJECT_DIR$/Cluster.cpp" />
       </list>
     </option>
   </component>
@@ -441,14 +437,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Point.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="88" selection-start-line="22" selection-start-column="88" selection-end-line="22" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Point.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -459,20 +447,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cluster.cpp">
+    <entry file="file://$PROJECT_DIR$/Point.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="348" column="71" selection-start-line="348" selection-start-column="71" selection-end-line="348" selection-end-column="71" />
-          <folding>
-            <element signature="e#41#61#0" expanded="true" />
-          </folding>
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cluster.h">
+    <entry file="file://$PROJECT_DIR$/KMeans.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
+          <caret line="8" column="98" selection-start-line="8" selection-start-column="98" selection-end-line="8" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -487,19 +481,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/Cluster.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KMeans.cpp">
+    <entry file="file://$PROJECT_DIR$/Cluster.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14814815">
-          <caret line="8" column="98" selection-start-line="8" selection-start-column="98" selection-end-line="8" selection-end-column="98" />
-          <folding />
+        <state vertical-scroll-proportion="0.16666667">
+          <caret line="250" column="14" selection-start-line="250" selection-start-column="14" selection-end-line="250" selection-end-column="14" />
+          <folding>
+            <element signature="e#41#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
