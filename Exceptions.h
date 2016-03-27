@@ -10,22 +10,23 @@
 
 namespace Clustering {
 
+    //if _current is the same size as the current object rhs is the offending argument
     class OutOfBoundsEx {
         unsigned int __current;
         int __rhs;
         std::string __name;
 
     public:
-        OutOfBoundsEx(unsigned int c, int r);
-        unsigned int getCurrent() const;
-        int getRhs() const;
-        std::string getName() const;
+        OutOfBoundsEx(unsigned int c, int r);                                   //constructor for this exception
+        unsigned int getCurrent() const;                                        //will get the calue for curent
+        int getRhs() const;                                                     //gets the value for rhs
+        std::string getName() const;                                            //will get value for name
 
-        friend std::ostream &operator<<(std::ostream &os, const OutOfBoundsEx &ex);
+        friend std::ostream &operator<<(std::ostream &os, const OutOfBoundsEx &ex); //will pass the exception to this fucntion and will pass the message over to the stream file
     };
 
 
-
+    //if current is the same as dimesntionality rhs is the offending argument
     class DimensionalityMismatchEx {
         unsigned int __current, __rhs;
         std::string __name;
@@ -40,7 +41,7 @@ namespace Clustering {
     };
 
 
-
+    //no attributes when k = 0 trown by kmeans constructor
     class ZeroClustersEx {
         std::string __name;
 

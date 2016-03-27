@@ -70,21 +70,21 @@ namespace Clustering {
         }
     }
 
-    bool Cluster::__in(const Point &p) const{
+    bool Cluster::__in(const Point &point1) const{
 
     }
 
-    void Cluster::add(const Point & pNew) {
+    void Cluster::add(const Point & pointNew) {
 
         if (__points == nullptr) {
-            LNode *N = new LNode(pNew, nullptr);
+            LNode *N = new LNode(pointNew, nullptr);
             __points = N;
             ++__size;
             return;
         }
 
         if (__points->next == nullptr) {
-            LNode *N = new LNode(pNew, nullptr);
+            LNode *N = new LNode(pointNew, nullptr);
             if(N->point < __points->point){
                 N->next = __points;
                 __points = N;
@@ -97,7 +97,7 @@ namespace Clustering {
             }
         }
 
-        LNode *N = new LNode(pNew, nullptr);
+        LNode *N = new LNode(pointNew, nullptr);
         LNodePtr temp = __points->next;
         LNodePtr prev = __points;
 
@@ -130,12 +130,12 @@ namespace Clustering {
     }
 
 
-    const Point & Cluster::remove(const Point &P1) {
+    const Point & Cluster::remove(const Point &Point1) {
         // Check if the given point exists in the cluster.
 
         LNodePtr temp = __points;
 
-        if (temp->point == P1) {
+        if (temp->point == Point1) {
 
             temp = __points;
             if (__size > 0) {
@@ -149,7 +149,7 @@ namespace Clustering {
             temp = temp->next;
 
             for (; i < __size; ++i) {
-                if (temp->point == P1) {
+                if (temp->point == Point1) {
                     if (temp->next == nullptr) {
                         prev->next = nullptr;
                         delete temp;
@@ -162,13 +162,13 @@ namespace Clustering {
                 prev = prev->next;
             }
         }
-        return P1;
+        return Point1;
     }
 
-    bool Cluster::contains(const Point & P1){
+    bool Cluster::contains(const Point & Point1){
 
         LNodePtr temp;
-        if(P1 == __points->point){
+        if(Point1 == __points->point){
             return true;
         }
         if(__points->next == nullptr){
@@ -176,7 +176,7 @@ namespace Clustering {
         }
         temp = __points->next;
         for(int i = 1; i < __size; ++i){
-            if(temp->point == P1){
+            if(temp->point == Point1){
                 return true;
             }
             temp = temp->next;
@@ -198,20 +198,20 @@ namespace Clustering {
         return temp->point;
     }
 
-    bool operator==(const Cluster & C1, const Cluster &C2){
-        if(C1.__size != C2.__size){
+    bool operator==(const Cluster & Cluster1, const Cluster &Cluster2){
+        if(Cluster1.__size != Cluster2.__size){
             return false;
         }
 
-        for(int i = 0; i < C1.__size; ++i){
-            if(C1[i] != C2[i]){
+        for(int i = 0; i < Cluster1.__size; ++i){
+            if(Cluster1[i] != Cluster2[i]){
                 return false;
             }
         }
         return true;
     }
-    bool operator!=(const Cluster & C1, const Cluster & C2){
-        return !(C1 == C2);
+    bool operator!=(const Cluster & Cluster1, const Cluster & Cluster2){
+        return !(Cluster1 == Cluster2);
     }
 
     Cluster & Cluster::operator+=(const Point & P1){
@@ -224,75 +224,75 @@ namespace Clustering {
     }
 
     // Members: Compound assignment (Cluster argument)
-    Cluster &Cluster::operator+=(const Cluster & C2) { // union
+    Cluster &Cluster::operator+=(const Cluster & Cluster2) { // union
 
-        for(int i = 0; i < C2.getSize(); ++i){
-            if(!(this->contains(C2[i]))){
-                this->add(C2[i]);
+        for(int i = 0; i < Cluster2.getSize(); ++i){
+            if(!(this->contains(Cluster2[i]))){
+                this->add(Cluster2[i]);
             }
         }
 
         return *this;
     }
 
-    Cluster &Cluster::operator-=(const Cluster & C2){ // (asymmetric) difference
-        for(int i = 0; i < C2.getSize(); ++i){
-            if(this->contains(C2[i])){
-                this->remove(C2[i]);
+    Cluster &Cluster::operator-=(const Cluster & Cluster2){ // (asymmetric) difference
+        for(int i = 0; i < Cluster2.getSize(); ++i){
+            if(this->contains(Cluster2[i])){
+                this->remove(Cluster2[i]);
             }
         }
         return *this;
     }
     // Friends: Arithmetic (Cluster and Point)
-    const Cluster operator+(const Cluster &C1, const Point &P1){
-        Cluster *C2 = new Cluster(C1);
+    const Cluster operator+(const Cluster &Cluster1, const Point &P1){
+        Cluster *C2 = new Cluster(Cluster1);
         if(!(C2->contains(P1))){
             C2->add(P1);
         }else{
-            return C1;
+            return Cluster1;
         }
         return *C2;
     }
-    const Cluster operator-(const Cluster &C1, const Point &P1){
-        Cluster *C2 = new Cluster(C1);
+    const Cluster operator-(const Cluster &Cluster1, const Point &P1){
+        Cluster *C2 = new Cluster(Cluster1);
         if(C2->contains(P1)){
             C2->remove(P1);
         }else{
-            return C1;
+            return Cluster1;
         }
         return *C2;
     }
 
     // Friends: Arithmetic (two Clusters)
-    const Cluster operator+(const Cluster &C1, const Cluster &C2){
-        Cluster *C3 = new Cluster(C1);
-        Cluster *C4 = new Cluster(C2);
+    const Cluster operator+(const Cluster &Cluster1, const Cluster &Cluster2){
+        Cluster *Cluster3 = new Cluster(Cluster1);
+        Cluster *Cluster4 = new Cluster(Cluster2);
 
-        for(int i = 0; i < C4->getSize(); ++i){
-            if(!(C3->contains(C2[i]))){
-                C3->add(C2[i]);
+        for(int i = 0; i < Cluster4->getSize(); ++i){
+            if(!(Cluster3->contains(Cluster2[i]))){
+                Cluster3->add(Cluster2[i]);
             }
         }
-        delete C4;
-        return *C3;
+        delete Cluster4;
+        return *Cluster3;
     }
 
-    const Cluster operator-(const Cluster &C1, const Cluster &C2){
-        Cluster *C3 = new Cluster(C1);
-        Cluster *C4 = new Cluster(C2);
+    const Cluster operator-(const Cluster &Cluster1, const Cluster &Cluster2){
+        Cluster *Cluster3 = new Cluster(Cluster1);
+        Cluster *Cluster4 = new Cluster(Cluster2);
 
-        for(int i = 0; i < C3->getSize(); ++i){
-            if(C3->contains(C2[i])){
-                C3->remove(C2[i]);
+        for(int i = 0; i < Cluster3->getSize(); ++i){
+            if(Cluster3->contains(Cluster2[i])){
+                Cluster3->remove(Cluster2[i]);
             }
         }
-        delete C4;
-        return *C3;
+        delete Cluster4;
+        return *Cluster3;
     }
 
-    std::ostream &operator<<(std::ostream & out, const Cluster & C1){
-        LNodePtr temp = C1.__points;
-        for(int i = 0; i < C1.__size; ++i){
+    std::ostream &operator<<(std::ostream & out, const Cluster & Cluster1){
+        LNodePtr temp = Cluster1.__points;
+        for(int i = 0; i < Cluster1.__size; ++i){
             out << temp->point << std::endl;
             temp = temp->next;
         }
@@ -300,7 +300,7 @@ namespace Clustering {
     }
 
     // Function is messy, and probably has a lot of unnecessary stuff, but works.
-    std::istream &operator>>(std::istream & in, Cluster& C1) {
+    std::istream &operator>>(std::istream & in, Cluster& Cluster1) {
 
         std::string temp;
         std::getline(in, temp);
@@ -333,7 +333,7 @@ namespace Clustering {
                 nPoint->setValue(index, tempD);
                 if ((s.peek() == '\n') || (s.peek() == '\r') || (s.peek() == EOF)) {
                     run = true;
-                    C1.add(*nPoint);
+                    Cluster1.add(*nPoint);
                     index = 0;
                     delete nPoint;
                     break;
@@ -346,7 +346,7 @@ namespace Clustering {
         return in;
     }
 
-    Cluster::Centroid::Centroid(unsigned int d, const Cluster &c) {
+    Cluster::Centroid::Centroid(unsigned int d, const Cluster &cluster1) {
         __dimensions = d;
         __c = ;
 

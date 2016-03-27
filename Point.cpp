@@ -26,24 +26,24 @@ namespace Clustering {
         __dim = dim;
     }
 
-    Point::Point(const Point & P1){
-        __id = P1.__id;
-        __dim = P1.getDims();
+    Point::Point(const Point & point1){
+        __id = point1.__id;
+        __dim = point1.getDims();
         __values = new double[__dim];
         for(int i = 0; i < __dim; ++i){
-            __values[i] = P1.__values[i];
+            __values[i] = point1.__values[i];
         }
 
     }
 
-    Point& Point::operator=(const Point & other){
-        if(this != &other){
+    Point& Point::operator=(const Point & yeezy){
+        if(this != &yeezy){
             //delete & copy
             //double *newVal = new double{other.getDims()};
-            __id = other.__id;
+            __id = yeezy.__id;
             delete[] __values;
-            __dim = other.getDims();
-            __values = other.__values;
+            __dim = yeezy.getDims();
+            __values = yeezy.__values;
         }
         return *this;
     }
@@ -59,40 +59,40 @@ namespace Clustering {
     }
 
 
-    void Point::setValue(unsigned int dim, double val){
-        __values[dim] = val;
+    void Point::setValue(unsigned int dimensions, double value){
+        __values[dimensions] = value;
     }
-    double Point::getValue(unsigned int dim) const{
-        if(dim <= getDims()){
-            return __values[dim];
+    double Point::getValue(unsigned int dimensions) const{
+        if(dimensions <= getDims()){
+            return __values[dimensions];
         }else {
             return 0;
         }
     }
-    double Point::distanceTo(const Point & other) const{
+    double Point::distanceTo(const Point & yeezy) const{
         double dist = 0.0;
         for (int i = 0; i < __dim; ++i){
-            dist = dist + ((__values[i]-other.getValue(i)) * (__values[i]-other.getValue(i)));
+            dist = dist + ((__values[i]-yeezy.getValue(i)) * (__values[i]-yeezy.getValue(i)));
         }
         return sqrt(dist);
     }
 
-    const Point Point::operator*(double mult) const { // prevent (p1 * 2) = p2;
-        Point *newP = new Point(__dim);
+    const Point Point::operator*(double multiple) const { // prevent (p1 * 2) = p2;
+        Point *newPoint = new Point(__dim);
 
         for (int i = 0; i < __dim; ++i) {
-            newP->__values[i] = __values[i] * mult;
+            newPoint->__values[i] = __values[i] * multiple;
         }
 
-        return *newP;
+        return *newPoint;
     }
 
 
-    const Point Point::operator/(double div) const{ // p3 = p2 / 2;
+    const Point Point::operator/(double division) const{ // p3 = p2 / 2;
         Point *newP = new Point(__dim);
 
         for (int i = 0; i < __dim; ++i) {
-            newP->__values[i] = __values[i] / div;
+            newP->__values[i] = __values[i] / division;
         }
 
         return *newP;
@@ -102,43 +102,43 @@ namespace Clustering {
         return __values[index];
     }
 
-    bool operator==(const Point & P1, const Point & P2){
+    bool operator==(const Point & Point1, const Point & Point2){
 
         bool pass = true;
 
-        if(P1.__id != P2.__id){
+        if(Point1.__id != Point2.__id){
             return false;
         }
 
-        if (P1.__dim != P2.__dim){
+        if (Point1.__dim != Point2.__dim){
             return false;
         }
 
-        for (int i = 0; i < P1.getDims(); ++i){
-            if(P1.__values[i] != P2.__values[i]){
+        for (int i = 0; i < Point1.getDims(); ++i){
+            if(Point1.__values[i] != Point2.__values[i]){
                 pass = false;
             }
         }
         return pass;
     }
 
-    bool operator!=(const Point & P1, const Point & P2){
-        return !(P1 == P2);
+    bool operator!=(const Point & Point1, const Point & Point2){
+        return !(Point1 == Point2);
     }
 
-    bool operator<(const Point & P1, const Point & P2) {
+    bool operator<(const Point & Point1, const Point & Point2) {
 
-        if (P1.__dim < P2.__dim) {
+        if (Point1.__dim < Point2.__dim) {
             return true;
         }
-        if (P1.__dim > P2.__dim) {
+        if (Point1.__dim > Point2.__dim) {
             return false;
         }
 
-        for (int i = 0; i < P1.getDims(); ++i) {
-            if (P1.__values[i] < P2.__values[i]) {
+        for (int i = 0; i < Point1.getDims(); ++i) {
+            if (Point1.__values[i] < Point2.__values[i]) {
                 return true;
-            }else if(P1.__values[i] > P2.__values[i]){
+            }else if(Point1.__values[i] > Point2.__values[i]){
                 return false;
             }
         }
@@ -146,105 +146,105 @@ namespace Clustering {
 
     }
 
-    bool operator>(const Point & P1, const Point &P2){
+    bool operator>(const Point & Point1, const Point &Point2){
 
-        if(P1.__dim > P2.__dim){
+        if(Point1.__dim > Point2.__dim){
             return true;
         }
-        if(P1.__dim < P2.__dim){
+        if(Point1.__dim < Point2.__dim){
             return false;
         }
 
-        for(int i = 0; i < P1.getDims(); ++i){
-            if(P1.__values[i] > P2.__values[i]){
+        for(int i = 0; i < Point1.getDims(); ++i){
+            if(Point1.__values[i] > Point2.__values[i]){
                 return true;
-            }else if(P1.__values[i] < P2.__values[i]){
+            }else if(Point1.__values[i] < Point2.__values[i]){
                 return false;
             }
         }
         return false;
     }
 
-    bool operator<=(const Point & P1, const Point &P2){
-        if (P1<P2) {
+    bool operator<=(const Point & Point1, const Point &Point2){
+        if (Point1<Point2) {
             return true;
         }
-        if (P1>P2) {
+        if (Point1>Point2) {
             return false;
         }
         return true;
     }
 
-    bool operator>=(const Point & P1, const Point &P2){
-        if (P1>P2) {
+    bool operator>=(const Point & Point1, const Point &Point2){
+        if (Point1>Point2) {
             return true;
         }
-        if (P1<P2) {
+        if (Point1<Point2) {
             return false;
         }
         return true;
     }
 
-    Point& operator+=(Point & P1, const Point & P2){
-        Point *newP = new Point(P2);
+    Point& operator+=(Point & Point1, const Point & Point2){
+        Point *newP = new Point(Point2);
 
-        for (int i = 0; i < P1.__dim; ++i){
-            P1.__values[i] = P1.__values[i] + newP->getValue(i);
+        for (int i = 0; i < Point1.__dim; ++i){
+            Point1.__values[i] = Point1.__values[i] + newP->getValue(i);
         }
         delete newP;
-        return P1;
+        return Point1;
     }
 
-    Point &operator-=(Point & P1, const Point & P2){
-        Point *newP = new Point(P2);
+    Point &operator-=(Point & Point1, const Point & Point2){
+        Point *newPoint = new Point(Point2);
 
-        for (int i = 0; i < P1.__dim; ++i){
-            P1.__values[i] = P1.__values[i] - newP->getValue(i);
+        for (int i = 0; i < Point1.__dim; ++i){
+            Point1.__values[i] = Point1.__values[i] - newPoint->getValue(i);
         }
-        delete newP;
-        return P1;
+        delete newPoint;
+        return Point1;
     }
 
-    Point & Point::operator*=(double mult){ // p *= 6; p.operator*=(6);
+    Point & Point::operator*=(double multiple){ // p *= 6; p.operator*=(6);
         for (int i = 0; i < __dim; ++i){
-            __values[i] = __values[i] * mult;
+            __values[i] = __values[i] * multiple;
         }
         return *this;
     }
 
-    Point & Point::operator/=(double div){
+    Point & Point::operator/=(double division){
         for (int i = 0; i < __dim; ++i){
-            __values[i] = __values[i] / div;
+            __values[i] = __values[i] / division;
         }
         return *this;
     }
-    const Point operator+(const Point & P1, const Point & P2){
-        Point *newP = new Point(P1);
-        *newP += P2;
-        return *newP;
+    const Point operator+(const Point & Point1, const Point & Point2){
+        Point *newPoint = new Point(Point1);
+        *newPoint += Point2;
+        return *newPoint;
     }
-    const Point operator-(const Point & P1, const Point & P2){
-        Point *newP = new Point(P1);
-        *newP -= P2;
-        return *newP;
+    const Point operator-(const Point & Point1, const Point & Point2){
+        Point *newPoint = new Point(Point1);
+        *newPoint -= Point2;
+        return *newPoint;
     }
 
-    std::ostream &operator<<(std::ostream &out, const Point &P1){
+    std::ostream &operator<<(std::ostream &out, const Point &Point1){
         int i = 0;
-        for( ; i < P1.getDims()-1; ++i){
-            out << P1.getValue(i);
+        for( ; i < Point1.getDims()-1; ++i){
+            out << Point1.getValue(i);
             out << ", ";
         }
-        out << P1.getValue(i);
+        out << Point1.getValue(i);
 
         return out;
     }
 
-    std::istream &operator>>(std::istream &in, Point &P1){
+    std::istream &operator>>(std::istream &in, Point &Point1){
         int index = 0;
 
         while ((in.peek() != '\n') || (in.peek() != '\r')){
-            in >> P1[index];
+            in >> Point1[index];
             if((in.peek() == '\n') || (in.peek() == '\r') || (in.eof())){
                 return in;
             }
