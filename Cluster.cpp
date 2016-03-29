@@ -35,7 +35,7 @@ namespace Clustering {
         __del();
     }
 
-    int Cluster::getSize() const{
+    unsigned  int Cluster::getSize() const{
         return __size;
     }
 
@@ -346,11 +346,11 @@ namespace Clustering {
         return in;
     }
 
-    Cluster::Centroid::Centroid(unsigned int d, const Cluster &cluster1) {
+    Cluster::Centroid::Centroid(unsigned int d, const Cluster &cluster1): __c(cluster1), __p(Point(d)) {        //initiallizes c and p
         __dimensions = d;
-        __c = ;
-
+        __valid = false;
     }
+
 
     const Point Cluster::Centroid::get() const {
         return __p;                                         //not sure if i have to return p or p.......
@@ -358,14 +358,70 @@ namespace Clustering {
 
     void Cluster::Centroid::set(const Point &p) {
         __p = p;                                            //same as return p not sure yet..
-
+        __valid = true;
     }
 
     bool Cluster::Centroid::isValid() const {
-        return true;                                        //if its valid it wil return a true value
+        return __valid;                                        //will just return valid
     }
 
     void Cluster::Centroid::setValid(bool valid) {
         __valid = valid;                                    //will set the value for valid from the parameter that is passed
+    }
+
+//Centroid Functions
+    void Cluster::Centroid::compute() {
+        if(__c.__points == nullptr) {
+             bool value = true;
+            toInfinity();
+            setValid(value);
+            return;
+        }
+        LNodePtr current = __c.__points;
+        Point p(__c.getDimensionality());
+        unsigned int sizeCheck = 0;
+
+        while(current != nullptr){
+            p += current -> point / __c.getSize();
+            current = current -> next;
+            sizeCheck++;
+        }
+        set(p);
+    }
+
+    bool Cluster::Centroid::equal(const Point &point1) const {
+        for (unsigned int i = 0; i < __dimensions; i++) {
+            if (__p.getValue(i) != point1.getValue(i)) {
+                return false;
+            }//else
+            //return true;
+        }
+        return true;
+    }
+
+    void Cluster::Centroid::toInfinity() {
+        for (unsigned int i = 0; i < __dimensions; i++) {
+            __p[i] = std::numeric_limits<double>::max();
+        }
+    }
+
+    Cluster::Cluster(unsigned int d) {                  //need to see how to initialize centriod
+        __dimensionality = d;                           //now needs a dimensionality variable
+        __size = 0;
+        __points = nullptr;
+        __id = __idGenerator;
+        __idGenerator++;
+    }
+
+    unsigned int Cluster::getDimensionality() const {
+        return __dimensionality;
+    }
+
+    unsigned int Cluster::getId() const {
+        return __id;
+    }
+
+    bool Cluster::contains(const Point &p) const {
+        return false;
     }
 }

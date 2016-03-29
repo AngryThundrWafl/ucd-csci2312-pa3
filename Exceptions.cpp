@@ -8,7 +8,7 @@ namespace Clustering {
     Clustering::OutOfBoundsEx::OutOfBoundsEx(unsigned int c, int r) {
         __current = c;
         __rhs = r;
-        __name = "";
+        __name = "OutOfBoundsEx";
     }
 
     unsigned int OutOfBoundsEx::getCurrent() const {
@@ -33,7 +33,7 @@ namespace Clustering {
     DimensionalityMismatchEx::DimensionalityMismatchEx(unsigned int c, unsigned int r) {
         __current = c;
         __rhs = r;
-        __name = "";
+        __name = "DimensionalityMismatchEx";
     }
 
     unsigned int DimensionalityMismatchEx::getCurrent() const {
@@ -54,7 +54,7 @@ namespace Clustering {
 
     //zero cluster exception thrown in k means constructor
     ZeroClustersEx::ZeroClustersEx() {
-        __name = "";
+        __name = "ZeroClustersEx";
     }
 
     std::string ZeroClustersEx::getName() const {
@@ -68,7 +68,7 @@ namespace Clustering {
     //data file exception thrown by k means constructor when file canot be opened or file cannot be found with the same name
     DataFileOpenEx::DataFileOpenEx(std::string filename) {
         __filename = filename;
-        __name = "";
+        __name = "DataFileOpenEx";
 
     }
 
@@ -87,7 +87,7 @@ namespace Clustering {
 
     //when there are no dimensions excdption is thrown in the point constructor when d = 0
     ZeroDimensionsEx::ZeroDimensionsEx() {
-        __name = "";
+        __name = "ZeroDimensionsEx";
     }
 
     std::string ZeroDimensionsEx::getName() const {
@@ -100,7 +100,7 @@ namespace Clustering {
 
     //when cluster is empty thrown by cluster::operator[] when cluster is empty
     EmptyClusterEx::EmptyClusterEx() {
-        __name = "";
+        __name = "EmptyClusterEx";
     }
 
     std::string EmptyClusterEx::getName() const {
