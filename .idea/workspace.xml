@@ -12,9 +12,8 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43233301-b254-426c-833f-9d3c405e83d9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster.cpp" afterPath="$PROJECT_DIR$/Cluster.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exceptions.cpp" afterPath="$PROJECT_DIR$/Exceptions.cpp" />
+    <list default="true" id="43233301-b254-426c-833f-9d3c405e83d9" name="Default" comment="worked on implementation of exceptions and centroid classes">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ucd-csci2312-pa3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,8 +89,8 @@
       <file leaf-file-name="Cluster.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cluster.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8703704">
-              <caret line="424" column="8" selection-start-line="424" selection-start-column="8" selection-end-line="424" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.537037">
+              <caret line="407" column="37" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
               <folding>
                 <element signature="e#41#61#0" expanded="true" />
               </folding>
@@ -315,6 +314,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="worked on implementation of exceptions and centroid classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="worked on implementation of exceptions and centroid classes" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -491,8 +494,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Cluster.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8703704">
-          <caret line="424" column="8" selection-start-line="424" selection-start-column="8" selection-end-line="424" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.537037">
+          <caret line="407" column="37" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
           <folding>
             <element signature="e#41#61#0" expanded="true" />
           </folding>
