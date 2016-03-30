@@ -8,14 +8,26 @@
 
 namespace Clustering {
 
+    unsigned int Cluster:: __idGenerator = 0;
+    const char Cluster::POINT_CLUSTER_ID_DELIM = ':';
+
     LNode::LNode(const Point &p, LNodePtr n) : point(p){
         next = n;
     }
 
 
     Cluster::Cluster(const Cluster &Cluster1) : centroid(Cluster1.__dimensionality, *this) {
-        __size = Cluster1.getSize();
-        __cpy(Cluster1.__points);
+        __dimensionality = Cluster1.__dimensionality;
+        __id = Cluster1.__id;
+        __size = 0;
+        if(Cluster1.__size == 0){
+            __points = nullptr;
+        }
+        for (int i = 0; i <Cluster1.__size; i++) {
+            add(Cluster1[i]);
+        }
+
+        centroid.compute();
     }
 
     Cluster& Cluster::operator=(const Cluster & other) {
@@ -419,5 +431,17 @@ namespace Clustering {
 
     bool Cluster::contains(const Point &p) const {
         return false;
+    }
+
+    void Cluster::pickCentroids(unsigned int k, Point **pointArray) {
+
+    }
+
+    Cluster::Move::Move(const Point &p, Cluster &from, Cluster &to):__p(p), __from(from), __to(to) {
+
+    }
+
+    void Cluster::Move::perform() {
+
     }
 }

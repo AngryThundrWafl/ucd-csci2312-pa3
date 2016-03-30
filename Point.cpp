@@ -5,18 +5,23 @@
 
 #include "Point.h"
 #include <cmath>
+#include "Exceptions.h"
 
 namespace Clustering {
 
     unsigned int Point::__idGen = 0;
+    const char Point::POINT_VALUE_DELIM = ',';
 
-    Point::Point(unsigned int dim){
+    Point::Point(unsigned int d){
+        if(d <= 0)ZeroDimensionsEx();
+
         __id = __idGen++;
-        __values = new double[dim];
-        __dim = dim;
+        __dim = d;
+        __values = new double[__dim];
 
-        for(int i = 0; i < dim; ++i){
-            __values[i] = 0.0;
+
+        for(int i = 0; i < __dim; ++i){
+            __values[i] = 0;
         }
     }
 
@@ -30,24 +35,23 @@ namespace Clustering {
         __id = point1.__id;
         __dim = point1.getDims();
         __values = new double[__dim];
-        for(int i = 0; i < __dim; ++i){
+        for(int i = 0; i < point1.__dim; ++i){
             __values[i] = point1.__values[i];
         }
 
     }
 
     Point& Point::operator=(const Point & yeezy){
-        if(this != &yeezy){
-            //delete & copy
-            //double *newVal = new double{other.getDims()};
+
+            if(yeezy != __dim)throw OutOfBoundsEx(yeezy.__dim, __dim);
             __id = yeezy.__id;
             delete[] __values;
             __dim = yeezy.getDims();
-            __values = yeezy.__values;
-        }
+        for(int i = 0; i <yeezy.__dim;i++)
+            __values[i] = yeezy.__values[i];
         return *this;
     }
-    // Should automatically delete __values
+    //nothing is needed it should delete it might need a destructor to do
     Point::~Point(){
     }
 
@@ -59,15 +63,13 @@ namespace Clustering {
     }
 
 
-    void Point::setValue(unsigned int dimensions, double value){
-        __values[dimensions] = value;
+    void Point::setValue(unsigned int d, double value){
+        if(d >__dim)throw OutOfBoundsEx(__dim, d);
+        __values[d] = value;
     }
-    double Point::getValue(unsigned int dimensions) const{
-        if(dimensions <= getDims()){
-            return __values[dimensions];
-        }else {
-            return 0;
-        }
+    double Point::getValue(unsigned int d) const{
+        if(d > __dim)throw OutOfBoundsEx(__dim, d);
+       return __values[d];
     }
     double Point::distanceTo(const Point & yeezy) const{
         double dist = 0.0;
@@ -104,7 +106,6 @@ namespace Clustering {
     }
 
     bool operator==(const Point & Point1, const Point & Point2){
-
         bool pass = true;
 
         if(Point1.__id != Point2.__id){
@@ -120,7 +121,7 @@ namespace Clustering {
                 pass = false;
             }
         }
-        return pass;
+       //return pass;
     }
 
     bool operator!=(const Point & Point1, const Point & Point2){
@@ -256,10 +257,11 @@ namespace Clustering {
     }
 
     void Point::rewindIdGen() {
-        __idGen--;
+        __idGen-= 1;
     }
 
     const double &Point::operator[](unsigned int index) const {
-
+        if(__dim < index)throw OutOfBoundsEx(__dim,index);
+            return __values[index];
     }
 }
