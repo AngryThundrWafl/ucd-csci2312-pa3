@@ -98,7 +98,8 @@ namespace Clustering {
         return *newP;
     }
 
-    double& Point::operator[](int index){
+    double& Point::operator[](unsigned int index){
+        //to do
         return __values[index];
     }
 
@@ -252,5 +253,13 @@ namespace Clustering {
             index++;
         }
         return in;
+    }
+
+    void Point::rewindIdGen() {
+        __idGen--;
+    }
+
+    const double &Point::operator[](unsigned int index) const {
+
     }
 }

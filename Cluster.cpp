@@ -12,17 +12,13 @@ namespace Clustering {
         next = n;
     }
 
-    Cluster::Cluster(){
-        __size = 0;
-        __points = nullptr;
+
+    Cluster::Cluster(const Cluster &Cluster1) : centroid(Cluster1.__dimensionality, *this) {
+        __size = Cluster1.getSize();
+        __cpy(Cluster1.__points);
     }
 
-    Cluster::Cluster(const Cluster &C1){
-        __size = C1.getSize();
-        __cpy(C1.__points);
-    }
-
-    Cluster& Cluster::operator=(const Cluster & other){
+    Cluster& Cluster::operator=(const Cluster & other) {
         if(this != &other){
             //delete & copy
             __size = other.__size;
@@ -165,24 +161,24 @@ namespace Clustering {
         return Point1;
     }
 
-    bool Cluster::contains(const Point & Point1){
+   //bool Cluster::contains(const Point & Point1){
 
-        LNodePtr temp;
-        if(Point1 == __points->point){
-            return true;
-        }
-        if(__points->next == nullptr){
-            return false;
-        }
-        temp = __points->next;
-        for(int i = 1; i < __size; ++i){
-            if(temp->point == Point1){
-                return true;
-            }
-            temp = temp->next;
-        }
-        return false;
-    }
+   //    LNodePtr temp;
+   //    if(Point1 == __points->point){
+   //        return true;
+   //    }
+   //    if(__points->next == nullptr){
+   //        return false;
+   //    }
+   //    temp = __points->next;
+   //    for(int i = 1; i < __size; ++i){
+   //        if(temp->point == Point1){
+   //            return true;
+   //        }
+   //        temp = temp->next;
+   //    }
+   //    return false;
+   //}
 
     const Point &Cluster::operator[](unsigned int index) const{
         LNodePtr temp;
@@ -405,8 +401,8 @@ namespace Clustering {
         }
     }
 
-    Cluster::Cluster(unsigned int d) {                  //need to see how to initialize centriod
-        __dimensionality = d;                           //now needs a dimensionality variable
+    Cluster::Cluster(unsigned int dim):centroid(dim, *this) {                  //need to see how to initialize centriod
+        __dimensionality = dim;                           //now needs a dimensionality variable
         __size = 0;
         __points = nullptr;
         __id = __idGenerator;

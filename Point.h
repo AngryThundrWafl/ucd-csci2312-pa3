@@ -47,7 +47,7 @@ namespace Clustering {
         const Point operator/(double) const; // p3 = p2 / 2;
 
         double &operator[](unsigned int index);                         //operator overload now takes a unsigned int
-        const double &operator[](unsigned int index) const;             //const of same overaload operator takes a unsigned int as well
+        const double &operator[](unsigned int index) const;             //const of same overaload operator takes a unsigned int as well to do
 
         // Friends
         friend Point &operator+=(Point &, const Point &);

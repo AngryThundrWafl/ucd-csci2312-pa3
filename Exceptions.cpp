@@ -23,8 +23,9 @@ namespace Clustering {
         return __name;
     }
 
-    std::ostream &Clustering::operator<<(std::ostream &os, const OutOfBoundsEx &ex) {
+    std::ostream &operator<<(std::ostream &os, const OutOfBoundsEx &ex) {
         os << ex.getName();                     //will print the exception message into the stream obj
+        return os;
     }
 
 
@@ -48,7 +49,7 @@ namespace Clustering {
         return __name;
     }
 
-    std::ostream &Clustering::operator<<(std::ostream &os, const DimensionalityMismatchEx &ex) {
+    std::ostream &operator<<(std::ostream &os, const DimensionalityMismatchEx &ex) {
         os << ex.getName();                 ////will print the exception message into the stream obj
     }
 
@@ -61,7 +62,7 @@ namespace Clustering {
         return __name;
     }
 
-    std::ostream &Clustering::operator<<(std::ostream &os, const ZeroClustersEx &ex) {
+    std::ostream &operator<<(std::ostream &os, const ZeroClustersEx &ex) {
         os << ex.getName();
     }
 
@@ -81,7 +82,7 @@ namespace Clustering {
         return __name;
     }
 
-    std::ostream &Clustering::operator<<(std::ostream &os, const DataFileOpenEx &ex) {
+    std::ostream &operator<<(std::ostream &os, const DataFileOpenEx &ex) {
         os << ex.getName();
     }
 
@@ -94,7 +95,7 @@ namespace Clustering {
         return __name;
     }
 
-    std::ostream &Clustering::operator<<(std::ostream &os, const ZeroDimensionsEx &ex) {
+    std::ostream &operator<<(std::ostream &os, const ZeroDimensionsEx &ex) {
         os << ex.getName();
     }
 
@@ -107,7 +108,7 @@ namespace Clustering {
         return __name;
     }
 
-    std::ostream &Clustering::operator<<(std::ostream &os, const EmptyClusterEx &ex) {
+    std::ostream &operator<<(std::ostream &os, const EmptyClusterEx &ex) {
         os << ex.getName();
     }
 }
