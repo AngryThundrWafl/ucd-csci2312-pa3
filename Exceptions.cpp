@@ -46,7 +46,7 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const DimensionalityMismatchEx &ex) {
-        os << ex.getName() << ": " << ex.getCurrent() << ", " << ex.getRhs();                  ////will print the exception message into the stream obj
+       return os << ex.getName() << ": " << ex.getCurrent() << ", " << ex.getRhs();                  ////will print the exception message into the stream obj
     }
 
     //zero cluster exception thrown in k means constructor
@@ -59,7 +59,7 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const ZeroClustersEx &ex) {
-        os << ex.getName();
+        return os << ex.getName();
     }
 
     //data file exception thrown by k means constructor when file canot be opened or file cannot be found with the same name
@@ -79,7 +79,7 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const DataFileOpenEx &ex) {
-        os << ex.getName() <<": " << ex.getFilename();
+        return os << ex.getName() <<": " << ex.getFilename();
     }
 
     //when there are no dimensions excdption is thrown in the point constructor when d = 0
@@ -92,7 +92,7 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const ZeroDimensionsEx &ex) {
-        os << ex.getName();
+        return os << ex.getName();
     }
 
     //when cluster is empty thrown by cluster::operator[] when cluster is empty
@@ -105,6 +105,6 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const EmptyClusterEx &ex) {
-        os << ex.getName();
+       return os << ex.getName();
     }
 }

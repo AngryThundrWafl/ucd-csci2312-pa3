@@ -13,7 +13,7 @@ namespace Clustering {
     const char Point::POINT_VALUE_DELIM = ',';
 
     void Point::rewindIdGen() {
-        --__idGen;
+        __idGen -= 1;
     }
 
     Point::Point(unsigned int d){
@@ -61,6 +61,7 @@ namespace Clustering {
     }
     //nothing is needed it should delete it might need a destructor to do
     Point::~Point(){
+        delete[] __values;
     }
 
     int Point::getId() const{
