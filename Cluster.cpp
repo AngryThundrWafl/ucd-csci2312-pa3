@@ -400,12 +400,37 @@ namespace Clustering {
 
 //Centroid Functions
     void Cluster::Centroid::compute() {
-
+        int i = __c.getSize();
+        int dim = __dimensions;
+        double avg = 0;
+        double total = 0;
+        if(i == 1)
+        {
+            __p = __c[0];
+        }
+        else if(dim > 0 && i >0)
+        {
+            for(int x = 0; x < dim; i++)
+            {
+                for(int y = 0; y < i; ++y)
+                {
+                    Point temp(__c[y]);
+                    total += temp[x];
+                }
+                avg = total / i;
+                __p.setValue(x,avg);
+                total =0;
+            }
+        }
+        else
+            toInfinity();
+        setValid(true);
     }
 
     bool Cluster::Centroid::equal(const Point &point1) const {
-        for (unsigned int i = 0; i < __dimensions; i++) {
-            if (__p.getValue(i) != point1.getValue(i)) {
+        for (int i = 0; i < __dimensions; i++) {
+            if (__p[i] != point1[i])
+            {
                 return false;
             }//else
             //return true;
@@ -463,6 +488,17 @@ namespace Clustering {
     }
 
     void Cluster::Move::perform() {
-
+        if(__from.contains(__p))
+        {
+            __to.add((__from.remove(__p)));
+        }
+        if(__from.getSize() == 0)
+        {
+            __from.centroid.toInfinity();
+        }
+        if(__to.getSize() == 0)
+        {
+            __to.centroid.toInfinity();
+        }
     }
 }
