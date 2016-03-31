@@ -4,6 +4,7 @@
 #include "KMeans.h"
 #include "Exceptions.h"
 #include <limits>
+#include <cstdlib>
 
 namespace  Clustering{
 
@@ -82,9 +83,7 @@ namespace  Clustering{
     }
 
     void KMeans::run() {
-        int mov = 100;
-        int iteration = 0;
-        int closest = NULL;
+        int mov = 100, iteration = 0, closest = NULL;
         double x1, y1, final;
         for(int i =0; i < __k; i++)
         {
@@ -120,7 +119,7 @@ namespace  Clustering{
         for(int i =0; i< __k; i++)
         {
             if(__clusters[i]->getSize() >0){
-                ++ __numNonempty
+                ++ __numNonempty;
             }
         }
         __numMovesLastIter = mov;
