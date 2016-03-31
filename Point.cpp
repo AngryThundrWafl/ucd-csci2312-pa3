@@ -6,6 +6,7 @@
 #include "Point.h"
 #include <cmath>
 #include "Exceptions.h"
+#include <sstream>
 
 namespace Clustering {
 
@@ -62,6 +63,7 @@ namespace Clustering {
     //nothing is needed it should delete it might need a destructor to do
     Point::~Point(){
         delete[] __values;
+        rewindIdGen();
     }
 
     int Point::getId() const{
@@ -73,16 +75,17 @@ namespace Clustering {
 
 
     void Point::setValue(unsigned int d, double value){
-        if(d >=__dim){
+        if(d >=__dim || d <0){
             throw OutOfBoundsEx(__dim, d);
         }
+        else
         __values[d] = value;
     }
 
     double Point::getValue(unsigned int d) const{
-        if(d >= __dim){
+        if(d >= __dim || d <0){
             throw OutOfBoundsEx(__dim, d);
-        }
+        }else
        return __values[d];
     }
 
@@ -226,29 +229,34 @@ namespace Clustering {
 
     }
 
-    std::ostream &operator<<(std::ostream &out, const Point &Point1){
-        int i = 0;
-        for( ; i < Point1.getDims()-1; ++i){
-            out << Point1.getValue(i);
-            out << ", ";
+    std::ostream &operator<<(std::ostream &os, const Point &p)
+    {
+        int i=0;
+        for (int index = 0; index < p.__dim-1; index++ )
+        {
+            os << p.__values[i] << p.POINT_VALUE_DELIM;
+            i++;
         }
-        out << Point1.getValue(i);
-
-        return out;
+        os << p.__values[i];
+        return os;
     }
 
-    std::istream &operator>>(std::istream &in, Point &Point1) {
-        int index = 0;
 
-        while ((in.peek() != '\n') || (in.peek() != '\r')) {
-            in >> Point1[index];
-            if ((in.peek() == '\n') || (in.peek() == '\r') || (in.eof())) {
-                return in;
+    std::istream  &operator>>(std::istream &is, Clustering::Point &p) {
+        double d;
+        unsigned int count = 0;
+        std::string value;
+        unsigned int i = 0;
+
+        while (getline(is, value, p.POINT_VALUE_DELIM)){
+            d = std::stod(value);
+            if ( i < p.__dim){
+                p.setValue(i++, d);
             }
-            in.ignore(100, ',');
-            index++;
+            count++;
         }
-        return in;
+        if (count != p.__dim)
+            throw Clustering::DimensionalityMismatchEx(i, p.__dim);
+        return is;
     }
-
 }
