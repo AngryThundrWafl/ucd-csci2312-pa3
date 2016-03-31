@@ -5,9 +5,7 @@
 namespace Clustering {
 
 //constructor for out of bounds exception
-    Clustering::OutOfBoundsEx::OutOfBoundsEx(unsigned int c, int r) {
-        __current = c;
-        __rhs = r;
+    Clustering::OutOfBoundsEx::OutOfBoundsEx(unsigned int c, int r):__current(c), __rhs(r) {
         __name = "OutOfBoundsEx";
     }
 
@@ -24,16 +22,14 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const OutOfBoundsEx &ex) {
-        os << ex.getName();                     //will print the exception message into the stream obj
+        os << ex.getName() << ": " << ex.getCurrent() << ", " << ex.getRhs();                 //will print the exception message into the stream obj
         return os;
     }
 
 
     //dimenstionaliy exception
     //comstructor
-    DimensionalityMismatchEx::DimensionalityMismatchEx(unsigned int c, unsigned int r) {
-        __current = c;
-        __rhs = r;
+    DimensionalityMismatchEx::DimensionalityMismatchEx(unsigned int c, unsigned int r) :__current(c), __rhs(r) {
         __name = "DimensionalityMismatchEx";
     }
 
@@ -50,7 +46,7 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const DimensionalityMismatchEx &ex) {
-        os << ex.getName();                 ////will print the exception message into the stream obj
+        os << ex.getName() << ": " << ex.getCurrent() << ", " << ex.getRhs();                  ////will print the exception message into the stream obj
     }
 
     //zero cluster exception thrown in k means constructor
@@ -83,7 +79,7 @@ namespace Clustering {
     }
 
     std::ostream &operator<<(std::ostream &os, const DataFileOpenEx &ex) {
-        os << ex.getName();
+        os << ex.getName() <<": " << ex.getFilename();
     }
 
     //when there are no dimensions excdption is thrown in the point constructor when d = 0
